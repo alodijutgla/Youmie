@@ -2,20 +2,38 @@ package com.example.youmie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class WelcomeActivity extends AppCompatActivity {
+
+    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_welcome);
 
         ImageView imageView = findViewById(R.id.imageTitle);
         runAnimation(imageView);
+        startRegisterActivity();
+    }
+
+    private void startRegisterActivity() {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
+                finish();
+            }
+        }, 5000);
     }
 
     private void runAnimation(ImageView imageView) {
