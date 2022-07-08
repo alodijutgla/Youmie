@@ -22,15 +22,15 @@ public class WelcomeActivity extends AppCompatActivity {
 
         ImageView imageView = findViewById(R.id.imageTitle);
         runAnimation(imageView);
-        startRegisterActivity();
+        startLoginActivity();
     }
 
-    private void startRegisterActivity() {
+    private void startLoginActivity() {
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, LogInActivity.class));
                 finish();
             }
         }, 5000);
