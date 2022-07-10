@@ -4,29 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/youmie_bg"
+    android:background="@drawable/youmie_gh"
     tools:context=".activities.ChoiceActivity">
 
     <TextView
-        android:id="@+id/gh"
-        android:layout_width="match_parent"
+        android:id="@+id/guest"
+        android:layout_width="106dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="54dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="220dp"
         android:fontFamily="@font/sacramento_regular"
-        android:gravity="center"
-        android:text="Guest Host"
+        android:text="Guest"
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/guestBtn"
+        android:layout_width="301dp"
+        android:layout_height="256dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="110dp"
+        android:background="?android:attr/selectableItemBackground" />
+
     <TextView
-        android:id="@+id/received_value_id"
+        android:id="@+id/host"
+        android:layout_width="113dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="530dp"
+        android:fontFamily="@font/sacramento_regular"
+        android:text="Host"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/hostBtn"
+        android:layout_width="305dp"
+        android:layout_height="252dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="410dp"
+        android:background="?android:attr/selectableItemBackground" />
+
+    <TextView
+        android:id="@+id/received_value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/gh"
-        android:layout_margin="35dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/sacramento_regular"
         android:gravity="center"
-        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/received_value"
+        android:fontFamily="@font/sacramento_regular"
+        android:gravity="center"
+        android:text="What do you feel like today?"
+        android:textColor="@color/black"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
 </RelativeLayout>

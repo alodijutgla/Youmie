@@ -35,7 +35,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivity(new Intent(WelcomeActivity.this, LogInActivity.class));
                 finish();
             }
-        }, 5000);
+        }, 4000);
     }
 
     private void runAnimation(ImageView imageView) {
