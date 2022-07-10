@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.youmie.utils.DatabaseUtils;
 import com.example.youmie.R;
+import com.example.youmie.utils.SharedPrefUtils;
 
 import es.dmoral.toasty.Toasty;
 
@@ -54,10 +55,14 @@ public class RegisterActivity extends AppCompatActivity {
                                     Toast.LENGTH_LONG, true).show();
                         } else {
                             if (databaseUtils.insertUser(userText, passText)) {
+                                SharedPrefUtils.saveUsername(userText, getApplicationContext());
+                                SharedPrefUtils.savePassword(passText, getApplicationContext());
                                 Toasty.success(RegisterActivity.this,
                                         "Registered successfully",
                                         Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
+                                Intent intent = new Intent(getApplicationContext(), ChoiceActivity.class);
+                                intent.putExtra("username_key", userText);
+                                startActivity(intent);
                             } else {
                                 Toasty.error(RegisterActivity.this,
                                         "Registration failed",
