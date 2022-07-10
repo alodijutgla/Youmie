@@ -39,6 +39,13 @@ public class DatabaseUtils extends SQLiteOpenHelper {
         }
     }
 
+    public Boolean checkUserData(String username, String password){
+        SQLiteDatabase liteDatabase = this.getWritableDatabase();
+        try (Cursor cursor = liteDatabase.rawQuery("Select * from users where username = ? and password = ?", new String[]{username, password})) {
+            return cursor.getCount() > 0;
+        }
+    }
+
     public boolean insertUser(String username, String password) {
         SQLiteDatabase liteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

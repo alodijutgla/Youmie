@@ -32,21 +32,33 @@ public class RegisterActivity extends AppCompatActivity {
                 String passRepText = passwordRep.getText().toString();
 
                 if (userText.isEmpty() || passText.isEmpty() || passRepText.isEmpty()) {
-                    Toasty.warning(RegisterActivity.this, "Please provide all fields", Toast.LENGTH_SHORT, true).show();
+                    Toasty.warning(RegisterActivity.this,
+                            "Please provide all fields",
+                            Toast.LENGTH_SHORT, true).show();
                 } else {
                     if (!passText.equals(passRepText)) {
-                        Toasty.error(RegisterActivity.this, "Please make sure your passwords match", Toast.LENGTH_SHORT, true).show();
+                        Toasty.error(RegisterActivity.this,
+                                "Please make sure your passwords match",
+                                Toast.LENGTH_SHORT, true).show();
                     } else {
                         if (databaseUtils.verifyUsername(userText)) {
-                            Toasty.warning(RegisterActivity.this, "Sorry but this username is already taken ;)", Toast.LENGTH_SHORT, true).show();
+                            Toasty.warning(RegisterActivity.this,
+                                    "Sorry but this username is already taken ;)",
+                                    Toast.LENGTH_SHORT, true).show();
                         } else if (databaseUtils.checkIfNonUniquePwd(passText)) {
-                            Toasty.warning(RegisterActivity.this, "This password is not available, please try again", Toast.LENGTH_LONG, true).show();
+                            Toasty.warning(RegisterActivity.this,
+                                    "This password is not available, please try again",
+                                    Toast.LENGTH_LONG, true).show();
                         } else {
                             if (databaseUtils.insertUser(userText, passText)) {
-                                Toasty.success(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+                                Toasty.success(RegisterActivity.this,
+                                        "Registered successfully",
+                                        Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
                             } else {
-                                Toasty.error(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT, true).show();
+                                Toasty.error(RegisterActivity.this,
+                                        "Registration failed",
+                                        Toast.LENGTH_SHORT, true).show();
                             }
                         }
                     }
