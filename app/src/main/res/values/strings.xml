@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Youmie</string>
+
+    <string-array name="typeOfFoods">
+        <item>Type of food…</item>
+        <item>Asian</item>
+        <item>Greek</item>
+        <item>Indian</item>
+        <item>Italian</item>
+        <item>Fast food</item>
+        <item>Spanish</item>
+    </string-array>
 </resources>

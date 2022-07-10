@@ -17,7 +17,7 @@ public class DatabaseUtils extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table users(username TEXT primary key, password TEXT)");
+        MyDB.execSQL("create Table users(username TEXT primary key, password TEXT, placename TEXT, foodtype TEXT, price DECIMAL(5,2))");
     }
 
     @Override
@@ -39,7 +39,7 @@ public class DatabaseUtils extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean checkUserData(String username, String password){
+    public Boolean checkUserData(String username, String password) {
         SQLiteDatabase liteDatabase = this.getWritableDatabase();
         try (Cursor cursor = liteDatabase.rawQuery("Select * from users where username = ? and password = ?", new String[]{username, password})) {
             return cursor.getCount() > 0;
@@ -52,6 +52,17 @@ public class DatabaseUtils extends SQLiteOpenHelper {
         contentValues.put("username", username);
         contentValues.put("password", password);
         long result = liteDatabase.insert("users", null, contentValues);
+        return result != -1;
+    }
+
+    public boolean insertHostData(String username, String placename, String foodtype, float price) {
+        SQLiteDatabase liteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("placename", placename);
+        contentValues.put("foodtype", foodtype);
+        contentValues.put("price", price);
+
+        long result = liteDatabase.update("users", contentValues, "username = ?", new String[]{username});
         return result != -1;
     }
 
