@@ -1,4 +1,4 @@
-package com.example.youmie;
+package com.example.youmie.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+
+import com.example.youmie.R;
 
 import java.util.Timer;
 import java.util.TimerTask;

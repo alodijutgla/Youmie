@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Youmie">
         <activity
-            android:name=".LogInActivity"
+            android:name=".activities.LogInActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".activities.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

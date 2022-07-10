@@ -1,4 +1,4 @@
-package com.example.youmie;
+package com.example.youmie.utils;
 
 import android.content.ContentValues;
 import android.content.Context;
