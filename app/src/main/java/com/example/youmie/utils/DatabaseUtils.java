@@ -5,8 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class DatabaseUtils extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "UsersDB.db";
@@ -40,7 +44,7 @@ public class DatabaseUtils extends SQLiteOpenHelper {
     }
 
     public Boolean checkUserData(String username, String password) {
-        SQLiteDatabase liteDatabase = this.getWritableDatabase();
+        SQLiteDatabase liteDatabase = this.getReadableDatabase();
         try (Cursor cursor = liteDatabase.rawQuery("Select * from users where username = ? and password = ?", new String[]{username, password})) {
             return cursor.getCount() > 0;
         }
@@ -66,4 +70,20 @@ public class DatabaseUtils extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    public ArrayList<User> readUsersTable() {
+        SQLiteDatabase liteDatabase = this.getReadableDatabase();
+        try (Cursor cursor = liteDatabase.rawQuery("Select * from users", null)) {
+
+            ArrayList<User> usersList = new ArrayList<>();
+
+            if (cursor.moveToFirst()) {
+                do {
+                    usersList.add(new User(cursor.getString(0), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+
+            return usersList;
+        }
+    }
 }

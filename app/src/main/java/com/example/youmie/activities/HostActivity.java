@@ -32,9 +32,9 @@ public class HostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host);
 
-        nameOfPlace = (EditText) findViewById(R.id.placeName);
-        price = (EditText) findViewById(R.id.price);
-        registerButton = (Button) findViewById(R.id.registerBtn);
+        nameOfPlace = findViewById(R.id.placeName);
+        price = findViewById(R.id.price);
+        registerButton = findViewById(R.id.registerBtn);
         String username = SharedPrefUtils.getUsername(this);
         DatabaseUtils databaseUtils = new DatabaseUtils(this);
 
@@ -44,9 +44,7 @@ public class HostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String nameOfPlaceText = nameOfPlace.getText().toString();
-//                float priceText = Float.parseFloat(price.getText().toString());
                 String priceText = price.getText().toString();
-
 
                 if (nameOfPlaceText.isEmpty() || priceText.isEmpty() || foodType.isEmpty()) {
                     Toasty.warning(HostActivity.this,
@@ -64,7 +62,7 @@ public class HostActivity extends AppCompatActivity {
     }
 
     void configureDropDownMenu() {
-        Spinner typeFoodSpinner = (Spinner) findViewById(R.id.spinnerTypeFood);
+        Spinner typeFoodSpinner = findViewById(R.id.spinnerTypeFood);
 
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 this, R.layout.spinner_item, getResources().getStringArray(R.array.typeOfFoods)) {
