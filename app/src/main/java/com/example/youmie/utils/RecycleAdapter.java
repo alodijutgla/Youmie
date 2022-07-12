@@ -18,12 +18,14 @@ import java.util.List;
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHolder> {
     private final List<String> titles;
     private final List<String> prices;
+    private final List<String> typesOfFood;
     private final List<String> details;
     private final List<Integer> images;
 
-    public RecycleAdapter(List<String> titles, List<String> prices, List<String> details, List<Integer> images) {
+    public RecycleAdapter(List<String> titles, List<String> prices, List<String> typesOfFood, List<String> details, List<Integer> images) {
         this.titles = titles;
         this.prices = prices;
+        this.typesOfFood = typesOfFood;
         this.details = details;
         this.images = images;
     }
@@ -31,6 +33,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView itemTitle;
         private final TextView itemPrice;
+        private final TextView itemTypeOfFood;
         private final TextView itemDetail;
         private final ImageView itemPictures;
 
@@ -38,6 +41,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
             super(itemView);
             itemTitle = itemView.findViewById(R.id.title);
             itemPrice = itemView.findViewById(R.id.price);
+            itemTypeOfFood = itemView.findViewById(R.id.typeOfFood);
             itemDetail = itemView.findViewById(R.id.description);
             itemPictures = itemView.findViewById(R.id.imageIcon);
 
@@ -62,6 +66,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.itemTitle.setText(titles.get(position));
         holder.itemPrice.setText(prices.get(position));
+        holder.itemTypeOfFood.setText(typesOfFood.get(position));
         holder.itemDetail.setText(details.get(position));
         holder.itemPictures.setImageResource(images.get(position));
     }

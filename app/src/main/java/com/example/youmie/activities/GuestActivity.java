@@ -18,6 +18,7 @@ public class GuestActivity extends AppCompatActivity {
 
     ArrayList<String> titlesList = new ArrayList<>();
     ArrayList<String> pricesList = new ArrayList<>();
+    ArrayList<String> typeOfFoodList = new ArrayList<>();
     ArrayList<String> descList = new ArrayList<>();
     ArrayList<Integer> imagesList = new ArrayList<>();
     ArrayList<User> userArrayList;
@@ -35,12 +36,13 @@ public class GuestActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RecycleAdapter(titlesList, pricesList, descList, imagesList));
+        recyclerView.setAdapter(new RecycleAdapter(titlesList, pricesList, typeOfFoodList, descList, imagesList));
 
     }
 
-    private void addToList(String title, String price, String description, Integer image) {
+    private void addToList(String title, String price, String typeOfFood, String description, Integer image) {
         titlesList.add(title);
+        typeOfFoodList.add(typeOfFood);
         pricesList.add(price);
         descList.add(description);
         imagesList.add(image);
@@ -56,10 +58,22 @@ public class GuestActivity extends AppCompatActivity {
                 case "Greek":
                     imageToAdd = R.drawable.greek;
                     break;
+                case "Indian":
+                    imageToAdd = R.drawable.indian;
+                    break;
+                case "Italian":
+                    imageToAdd = R.drawable.italian;
+                    break;
+                case "Fast food":
+                    imageToAdd = R.drawable.fast_food;
+                    break;
+                case "Spanish":
+                    imageToAdd = R.drawable.spanish;
+                    break;
                 default:
                     imageToAdd = R.mipmap.ic_launcher_round;
             }
-            addToList(user.getUsername(), user.getPrice(), user.getPlaceName(), imageToAdd);
+            addToList(user.getUsername(), user.getPrice() + "€", user.getFoodType(), user.getPlaceName(), imageToAdd);
         }
     }
 }
