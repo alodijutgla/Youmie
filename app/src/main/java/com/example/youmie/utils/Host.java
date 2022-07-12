@@ -1,17 +1,28 @@
 package com.example.youmie.utils;
 
-public class User {
+import java.lang.reflect.Field;
+
+public class Host {
 
     private String username;
     private String placeName;
     private String foodType;
     private String price;
 
-    public User(String username, String placeName, String foodType, String price) {
+    public Host(String username, String placeName, String foodType, String price) {
         this.username = username;
         this.placeName = placeName;
         this.foodType = foodType;
         this.price = price;
+    }
+
+    public boolean checkNull() throws IllegalAccessException {
+        for (Field f : getClass().getDeclaredFields()) {
+            if (f.get(this) == null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getUsername() {

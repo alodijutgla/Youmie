@@ -5,14 +5,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Toast;
 
 import com.example.youmie.R;
 import com.example.youmie.utils.DatabaseUtils;
 import com.example.youmie.utils.RecycleAdapter;
-import com.example.youmie.utils.User;
+import com.example.youmie.utils.Host;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import es.dmoral.toasty.Toasty;
 
 public class GuestActivity extends AppCompatActivity {
 
@@ -21,7 +24,7 @@ public class GuestActivity extends AppCompatActivity {
     ArrayList<String> typeOfFoodList = new ArrayList<>();
     ArrayList<String> descList = new ArrayList<>();
     ArrayList<Integer> imagesList = new ArrayList<>();
-    ArrayList<User> userArrayList;
+    ArrayList<Host> hostsArrayList;
 
 
     @Override
@@ -30,9 +33,13 @@ public class GuestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guest);
 
         DatabaseUtils databaseUtils = new DatabaseUtils(this);
-        userArrayList = databaseUtils.readUsersTable();
+        hostsArrayList = databaseUtils.readUsersTable();
 
-        postToList();
+        try {
+            postToList();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
         RecyclerView recyclerView = findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -48,10 +55,33 @@ public class GuestActivity extends AppCompatActivity {
         imagesList.add(image);
     }
 
-    private void postToList() {
-        for (User user : userArrayList) {
+    private void removeUsersThatAreNoHosts() throws IllegalAccessException {
+//        for (Host host : hostsArrayList) {
+//            if (host.checkNull()) {
+//                hostsArrayList.remove(host);
+//            }
+//        }
+
+        for (Iterator<Host> iterator = hostsArrayList.iterator(); iterator.hasNext(); ) {
+            Host value = iterator.next();
+            if (value.checkNull()) {
+                iterator.remove();
+            }
+        }
+    }
+
+    private void postToList() throws IllegalAccessException {
+        removeUsersThatAreNoHosts();
+        if (hostsArrayList.isEmpty()) {
+            Toasty.error(GuestActivity.this,
+                    "There are no hosts yet!",
+                    Toast.LENGTH_LONG, true).show();
+            return;
+        }
+
+        for (Host host : hostsArrayList) {
             int imageToAdd;
-            switch (user.getFoodType()) {
+            switch (host.getFoodType()) {
                 case "Asian":
                     imageToAdd = R.drawable.asian;
                     break;
@@ -73,7 +103,7 @@ public class GuestActivity extends AppCompatActivity {
                 default:
                     imageToAdd = R.mipmap.ic_launcher_round;
             }
-            addToList(user.getUsername(), user.getPrice() + "€", user.getFoodType(), user.getPlaceName(), imageToAdd);
+            addToList(host.getUsername(), host.getPrice() + "€", host.getFoodType(), host.getPlaceName(), imageToAdd);
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.youmie.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -55,6 +56,7 @@ public class HostActivity extends AppCompatActivity {
                         Toasty.success(HostActivity.this,
                                 "Entry registered successfully!",
                                 Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), ChoiceActivity.class));
                     }
                 }
             }
