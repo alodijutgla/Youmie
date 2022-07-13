@@ -8,15 +8,14 @@
     tools:context=".activities.GuestActivity">
 
     <TextView
-        android:id="@+id/host_msg"
+        android:id="@+id/receivedUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/sacramento_regular"
         android:gravity="center"
-        android:text="Hey guest"
         android:textColor="@color/black"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView

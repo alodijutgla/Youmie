@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Youmie">
         <activity
+            android:name=".activities.DetailedActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.GuestActivity"
             android:exported="false" />
         <activity

@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.youmie.R;
 import com.example.youmie.utils.DatabaseUtils;
 import com.example.youmie.utils.RecycleAdapter;
 import com.example.youmie.utils.Host;
+import com.example.youmie.utils.SharedPrefUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,18 +22,23 @@ import es.dmoral.toasty.Toasty;
 
 public class GuestActivity extends AppCompatActivity {
 
-    ArrayList<String> titlesList = new ArrayList<>();
-    ArrayList<String> pricesList = new ArrayList<>();
-    ArrayList<String> typeOfFoodList = new ArrayList<>();
-    ArrayList<String> descList = new ArrayList<>();
-    ArrayList<Integer> imagesList = new ArrayList<>();
-    ArrayList<Host> hostsArrayList;
+    private TextView receivedUser;
+    private String username;
+
+    private final ArrayList<String> titlesList = new ArrayList<>();
+    private final ArrayList<String> pricesList = new ArrayList<>();
+    private final ArrayList<String> typeOfFoodList = new ArrayList<>();
+    private final ArrayList<String> descList = new ArrayList<>();
+    private final ArrayList<Integer> imagesList = new ArrayList<>();
+    private ArrayList<Host> hostsArrayList;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest);
+
+        displayUsername();
 
         DatabaseUtils databaseUtils = new DatabaseUtils(this);
         hostsArrayList = databaseUtils.readUsersTable();
@@ -47,6 +55,17 @@ public class GuestActivity extends AppCompatActivity {
 
     }
 
+    private void displayUsername() {
+        receivedUser = (TextView) findViewById(R.id.receivedUser);
+        Intent intent = getIntent();
+        if (intent.hasExtra("username_key")) {
+            username = intent.getStringExtra("username_key");
+        } else {
+            username = SharedPrefUtils.getUsername(this);
+        }
+        receivedUser.setText(String.format("Hello %s", username));
+    }
+
     private void addToList(String title, String price, String typeOfFood, String description, Integer image) {
         titlesList.add(title);
         typeOfFoodList.add(typeOfFood);
@@ -56,15 +75,11 @@ public class GuestActivity extends AppCompatActivity {
     }
 
     private void removeUsersThatAreNoHosts() throws IllegalAccessException {
-//        for (Host host : hostsArrayList) {
-//            if (host.checkNull()) {
-//                hostsArrayList.remove(host);
-//            }
-//        }
-
         for (Iterator<Host> iterator = hostsArrayList.iterator(); iterator.hasNext(); ) {
             Host value = iterator.next();
             if (value.checkNull()) {
+                iterator.remove();
+            } else if (value.getUsername().equals(username)) {
                 iterator.remove();
             }
         }
