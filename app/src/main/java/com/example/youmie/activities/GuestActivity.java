@@ -22,13 +22,13 @@ import es.dmoral.toasty.Toasty;
 
 public class GuestActivity extends AppCompatActivity {
 
-    private TextView receivedUser;
     private String username;
 
-    private final ArrayList<String> titlesList = new ArrayList<>();
+    private final ArrayList<String> usernameList = new ArrayList<>();
     private final ArrayList<String> pricesList = new ArrayList<>();
     private final ArrayList<String> typeOfFoodList = new ArrayList<>();
-    private final ArrayList<String> descList = new ArrayList<>();
+    private final ArrayList<String> nameOfPlaceList = new ArrayList<>();
+    private final ArrayList<String> descriptionList = new ArrayList<>();
     private final ArrayList<Integer> imagesList = new ArrayList<>();
     private ArrayList<Host> hostsArrayList;
 
@@ -51,12 +51,12 @@ public class GuestActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RecycleAdapter(titlesList, pricesList, typeOfFoodList, descList, imagesList));
+        recyclerView.setAdapter(new RecycleAdapter(usernameList, nameOfPlaceList, typeOfFoodList, pricesList, descriptionList, imagesList));
 
     }
 
     private void displayUsername() {
-        receivedUser = (TextView) findViewById(R.id.receivedUser);
+        TextView receivedUser = (TextView) findViewById(R.id.receivedUser);
         Intent intent = getIntent();
         if (intent.hasExtra("username_key")) {
             username = intent.getStringExtra("username_key");
@@ -66,11 +66,12 @@ public class GuestActivity extends AppCompatActivity {
         receivedUser.setText(String.format("Hello %s", username));
     }
 
-    private void addToList(String title, String price, String typeOfFood, String description, Integer image) {
-        titlesList.add(title);
+    private void addToList(String user, String nameOfPlace, String typeOfFood, String price, String description, Integer image) {
+        usernameList.add(user);
+        nameOfPlaceList.add(nameOfPlace);
         typeOfFoodList.add(typeOfFood);
         pricesList.add(price);
-        descList.add(description);
+        descriptionList.add(description);
         imagesList.add(image);
     }
 
@@ -118,7 +119,7 @@ public class GuestActivity extends AppCompatActivity {
                 default:
                     imageToAdd = R.mipmap.ic_launcher_round;
             }
-            addToList(host.getUsername(), host.getPrice() + "€", host.getFoodType(), host.getPlaceName(), imageToAdd);
+            addToList(host.getUsername(), host.getPlaceName(), host.getFoodType(), host.getPrice() + "€", host.getDescription(), imageToAdd);
         }
     }
 }

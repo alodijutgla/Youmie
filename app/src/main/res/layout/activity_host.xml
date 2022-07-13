@@ -56,11 +56,27 @@
         android:textColor="@color/black"
         android:textColorHint="@color/black" />
 
+    <EditText
+        android:id="@+id/edtDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/price"
+        android:background="#30ffffff"
+        android:drawableStart="@drawable/ic_baseline_textsms_24"
+        android:drawablePadding="20dp"
+        android:hint="Description"
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLength="2000"
+        android:maxLines="4"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/registerBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/price"
+        android:layout_below="@id/edtDescription"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:backgroundTint="@color/design_default_color_on_secondary"

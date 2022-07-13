@@ -25,7 +25,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             app:srcCompat="@mipmap/ic_launcher_round" />
 
         <TextView
@@ -75,15 +75,28 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/nameOfPlace"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginStart="110dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginTop="50dp"
             android:fontFamily="@font/sacramento_regular"
-            android:text="Description of the content"
+            android:text="Name of Place"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/nameOfPlace"
+            android:layout_marginStart="110dp"
+            android:fontFamily="@font/sacramento_regular"
+            android:text="Description of Content"
             android:textColor="@android:color/darker_gray"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

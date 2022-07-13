@@ -8,12 +8,14 @@ public class Host {
     private String placeName;
     private String foodType;
     private String price;
+    private String description;
 
-    public Host(String username, String placeName, String foodType, String price) {
+    public Host(String username, String placeName, String foodType, String price, String description) {
         this.username = username;
         this.placeName = placeName;
         this.foodType = foodType;
         this.price = price;
+        this.description = description;
     }
 
     public boolean checkNull() throws IllegalAccessException {
@@ -55,5 +57,13 @@ public class Host {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

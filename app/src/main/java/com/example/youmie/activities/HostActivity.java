@@ -24,9 +24,8 @@ import es.dmoral.toasty.Toasty;
 
 public class HostActivity extends AppCompatActivity {
 
-    Button registerButton;
-    EditText nameOfPlace, price;
-    String foodType;
+    private EditText nameOfPlace, price, description;
+    private String foodType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,8 @@ public class HostActivity extends AppCompatActivity {
 
         nameOfPlace = findViewById(R.id.placeName);
         price = findViewById(R.id.price);
-        registerButton = findViewById(R.id.registerBtn);
+        description = findViewById(R.id.edtDescription);
+        Button registerButton = findViewById(R.id.registerBtn);
         String username = SharedPrefUtils.getUsername(this);
         DatabaseUtils databaseUtils = new DatabaseUtils(this);
 
@@ -46,13 +46,14 @@ public class HostActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String nameOfPlaceText = nameOfPlace.getText().toString();
                 String priceText = price.getText().toString();
+                String descriptionText = description.getText().toString();
 
-                if (nameOfPlaceText.isEmpty() || priceText.isEmpty() || foodType.isEmpty()) {
+                if (nameOfPlaceText.isEmpty() || priceText.isEmpty() || foodType.isEmpty() || descriptionText.isEmpty()) {
                     Toasty.warning(HostActivity.this,
                             "Please provide all fields",
                             Toast.LENGTH_SHORT, true).show();
                 } else {
-                    if (databaseUtils.insertHostData(username, nameOfPlaceText, foodType, Float.parseFloat(priceText))) {
+                    if (databaseUtils.insertHostData(username, nameOfPlaceText, foodType, Float.parseFloat(priceText), descriptionText)) {
                         Toasty.success(HostActivity.this,
                                 "Entry registered successfully!",
                                 Toast.LENGTH_SHORT).show();

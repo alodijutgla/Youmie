@@ -27,6 +27,11 @@ public class WelcomeActivity extends AppCompatActivity {
         startLoginActivity();
     }
 
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
+
     private void startLoginActivity() {
         timer = new Timer();
         timer.schedule(new TimerTask() {

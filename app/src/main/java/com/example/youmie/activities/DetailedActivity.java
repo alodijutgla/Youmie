@@ -22,6 +22,12 @@ public class DetailedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detailed);
 
         Intent intent = getIntent();
+
+        if (intent.hasExtra("placename_key")) {
+            TextView textView = findViewById(R.id.placename_key);
+            textView.setText(intent.getStringExtra("placename_key"));
+        }
+
         if (intent.hasExtra("image_key")) {
             Bitmap bitmap = (Bitmap) intent.getParcelableExtra("image_key");
             if (bitmap != null) {
@@ -30,14 +36,24 @@ public class DetailedActivity extends AppCompatActivity {
             }
         }
 
-        if (intent.hasExtra("username_key")) {
-            TextView textView = findViewById(R.id.user_det);
-            textView.setText(intent.getStringExtra("username_key"));
+        if (intent.hasExtra("typeOfFood_key")) {
+            TextView textView = findViewById(R.id.typeOfFood_key);
+            textView.setText(intent.getStringExtra("typeOfFood_key"));
         }
 
-        if (intent.hasExtra("detail_key")) {
+        if (intent.hasExtra("username_key")) {
+            TextView textView = findViewById(R.id.user_det);
+            textView.setText(String.format("Host: %s", intent.getStringExtra("username_key")));
+        }
+
+        if (intent.hasExtra("price_key")) {
+            TextView textView = findViewById(R.id.price_key);
+            textView.setText(intent.getStringExtra("price_key"));
+        }
+
+        if (intent.hasExtra("description_key")) {
             TextView textView = findViewById(R.id.descr_det);
-            textView.setText(intent.getStringExtra("detail_key"));
+            textView.setText(intent.getStringExtra("description_key"));
         }
     }
 

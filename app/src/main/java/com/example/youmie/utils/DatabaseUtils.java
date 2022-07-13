@@ -19,7 +19,7 @@ public class DatabaseUtils extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table users(username TEXT , password TEXT, placename TEXT, foodtype TEXT, price DECIMAL(5,2))");
+        MyDB.execSQL("create Table users(username TEXT , password TEXT, placename TEXT, foodtype TEXT, price DECIMAL(5,2), description TEXT)");
     }
 
     @Override
@@ -57,7 +57,7 @@ public class DatabaseUtils extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public boolean insertHostData(String username, String placename, String foodtype, float price) {
+    public boolean insertHostData(String username, String placename, String foodtype, float price, String description) {
         SQLiteDatabase liteDatabase = this.getWritableDatabase();
         String passwd = null;
         boolean isUpdateNeeded = false;
@@ -77,6 +77,7 @@ public class DatabaseUtils extends SQLiteOpenHelper {
         contentValues.put("placename", placename);
         contentValues.put("foodtype", foodtype);
         contentValues.put("price", price);
+        contentValues.put("description", description);
 
         long result;
 
@@ -95,7 +96,8 @@ public class DatabaseUtils extends SQLiteOpenHelper {
             ArrayList<Host> usersList = new ArrayList<>();
             if (cursor.moveToFirst()) {
                 do {
-                    usersList.add(new Host(cursor.getString(0), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
+                    usersList.add(new Host(cursor.getString(0), cursor.getString(2),
+                            cursor.getString(3), cursor.getString(4), cursor.getString(5)));
                 } while (cursor.moveToNext());
             }
             cursor.close();

@@ -6,21 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".activities.DetailedActivity">
 
-
-    <ImageView
-        android:id="@+id/resImage"
-        android:layout_width="match_parent"
-        android:layout_height="300dp" />
-
     <TextView
-        android:id="@+id/user_det"
+        android:id="@+id/placename_key"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/resImage"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:textColor="@color/black"
         android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/resImage"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@id/placename_key" />
+
+    <TextView
+        android:id="@+id/typeOfFood_key"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/placename_key"
+        android:layout_marginTop="225dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/dummy"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/user_det"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/resImage"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/price_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/resImage"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
@@ -28,9 +68,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/user_det"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/sacramento_regular"
         android:gravity="center"
         android:textColor="@android:color/darker_gray"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:textStyle="bold" />
 </RelativeLayout>
