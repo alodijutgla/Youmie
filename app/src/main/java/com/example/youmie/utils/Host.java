@@ -10,6 +10,9 @@ public class Host {
     private String price;
     private String description;
 
+    /**
+     * Constructor of an Object data class which is just to carry information easier
+     */
     public Host(String username, String placeName, String foodType, String price, String description) {
         this.username = username;
         this.placeName = placeName;
@@ -18,6 +21,9 @@ public class Host {
         this.description = description;
     }
 
+    /**
+     * checkNull() checks if any item in the fields is null
+     */
     public boolean checkNull() throws IllegalAccessException {
         for (Field f : getClass().getDeclaredFields()) {
             if (f.get(this) == null) {
@@ -26,6 +32,10 @@ public class Host {
         }
         return false;
     }
+
+    /**
+     * All getters and setters
+     */
 
     public String getUsername() {
         return username;
